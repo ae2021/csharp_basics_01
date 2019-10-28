@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace _04_lotto {
 	class Program {
-		private static Random rnd = new Random ();
+		private static readonly Random rnd = new Random ();
 		static int[] GetLottoRound (int min, int max, int count) {
 			int[] result = new int[count];
 			for (int i2 = 0; i2 < count; i2++)
