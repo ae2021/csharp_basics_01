@@ -1,0 +1,55 @@
+name: CI
+on: [push, pull_request]
+
+jobs:
+
+  build-ubuntu:
+    runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+        dotnet: [  '3.0.100' ]
+    name: Dotnet ${{ matrix.dotnet }} build-ubuntu
+    steps:
+      - uses: actions/checkout@master
+      - name: Setup dotnet
+        run: |
+          uname -a
+          export DOTNET_CLI_TELEMETRY_OPTOUT=1
+      - uses: actions/setup-dotnet@master
+        with:
+          dotnet-version: ${{ matrix.dotnet }}
+      - name: Build project
+        run: dotnet build
+      - name: Test project
+        run: dotnet run --project lotto/_04_lotto.csproj
+
+  # build-osx:
+  #   runs-on: macOS-10.14
+  #   strategy:
+  #     matrix:
+  #       dotnet: [  '2.2.103', '3.0.100-rc2.19467.7', '3.1.100-preview1-014459' ]
+  #   name: Dotnet ${{ matrix.dotnet }} build-osx
+  #   steps:
+  #     - uses: actions/checkout@master
+  #     - name: Setup dotnet
+  #       uses: actions/setup-dotnet@master
+  #       with:
+  #         dotnet-version: ${{ matrix.dotnet }}
+  #     - run: dotnet build
+  build-windows:
+    runs-on: windows-2019
+    strategy:
+      matrix:
+        dotnet: [  '3.0.100' ]
+    name: Dotnet ${{ matrix.dotnet }} build-windows
+    steps:
+      - uses: actions/checkout@master
+      - name: Setup dotnet
+        run: set DOTNET_CLI_TELEMETRY_OPTOUT=1
+      - uses: actions/setup-dotnet@master
+        with:
+          dotnet-version: ${{ matrix.dotnet }}
+      - name: Build project
+        run: dotnet build
+      - name: Test project
+        run: dotnet run --project lotto/_04_lotto.csproj
