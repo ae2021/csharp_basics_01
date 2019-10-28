@@ -21,7 +21,7 @@ jobs:
       - name: Build project
         run: dotnet build lotto/04_lotto.sln
       - name: Test project
-        run: dotnet run --project lotto/_04_lotto.csproj
+        run: dotnet run --project lotto/04_lotto/_04_lotto.csproj
 
   # build-osx:
   #   runs-on: macOS-10.14
@@ -52,4 +52,4 @@ jobs:
       - name: Build project
         run: dotnet build lotto/04_lotto.sln
       - name: Test project
-        run: dotnet run --project lotto/_04_lotto.csproj
+        run: dotnet run --project lotto/04_lotto/_04_lotto.csproj
