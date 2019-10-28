@@ -19,7 +19,7 @@ jobs:
         with:
           dotnet-version: ${{ matrix.dotnet }}
       - name: Build project
-        run: cd lotto && dotnet build
+        run: dotnet build lotto/04_lotto.sln
       - name: Test project
         run: dotnet run --project lotto/_04_lotto.csproj
 
@@ -50,6 +50,6 @@ jobs:
         with:
           dotnet-version: ${{ matrix.dotnet }}
       - name: Build project
-        run: dotnet build --project lotto/_04_lotto.csproj
+        run: dotnet build lotto/04_lotto.sln
       - name: Test project
         run: dotnet run --project lotto/_04_lotto.csproj
