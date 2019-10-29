@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-18.04
     strategy:
       matrix:
-        dotnet: [  '2.2.103', '3.0.100' ]
+        dotnet: [  '3.0.100' ]
     name: Dotnet ${{ matrix.dotnet }} build-ubuntu
     steps:
       - uses: actions/checkout@master
@@ -20,12 +20,12 @@ jobs:
           dotnet-version: ${{ matrix.dotnet }}
       - name: Build project
         run: |
-          dotnet build -f ${{ matrix.dotnet }} lotto/04_lotto.sln
-          dotnet build -f ${{ matrix.dotnet }} kegeln/kegeln.sln
+          dotnet build -f netcoreapp3.0 lotto/04_lotto.sln
+          dotnet build -f netcoreapp3.0 kegeln/kegeln.sln
       - name: Test project
         run: |
-          dotnet run -f ${{ matrix.dotnet }} --project lotto/04_lotto/04_lotto.csproj
-          dotnet run -f ${{ matrix.dotnet }} --project kegeln/kegeln/kegeln.csproj
+          dotnet run -f netcoreapp3.0 --project lotto/04_lotto/04_lotto.csproj
+          dotnet run -f netcoreapp3.0 --project kegeln/kegeln/kegeln.csproj
 
   # build-osx:
   #   runs-on: macOS-10.14
@@ -44,7 +44,7 @@ jobs:
     runs-on: windows-2019
     strategy:
       matrix:
-        dotnet: [  '2.2.103', '3.0.100' ]
+        dotnet: [  '3.0.100' ]
     name: Dotnet ${{ matrix.dotnet }} build-windows
     steps:
       - uses: actions/checkout@master
@@ -57,9 +57,9 @@ jobs:
           dotnet-version: ${{ matrix.dotnet }}
       - name: Build project
         run: |
-          dotnet build -f ${{ matrix.dotnet }} lotto/04_lotto.sln
-          dotnet build -f ${{ matrix.dotnet }} kegeln/kegeln.sln
+          dotnet build -f netcoreapp3.0 lotto/04_lotto.sln
+          dotnet build -f netcoreapp3.0 kegeln/kegeln.sln
       - name: Test project
         run: |
-          dotnet run -f ${{ matrix.dotnet }} --project lotto/04_lotto/04_lotto.csproj
-          dotnet run -f ${{ matrix.dotnet }} --project kegeln/kegeln/kegeln.csproj
+          dotnet run -f netcoreapp3.0 --project lotto/04_lotto/04_lotto.csproj
+          dotnet run -f netcoreapp3.0 --project kegeln/kegeln/kegeln.csproj
