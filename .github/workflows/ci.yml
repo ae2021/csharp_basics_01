@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-18.04
     strategy:
       matrix:
-        dotnet: [  '3.0.100' ]
+        dotnet: [  '2.2.103', '3.0.100', '3.1.100-preview1-014459' ]
     name: Dotnet ${{ matrix.dotnet }} build-ubuntu
     steps:
       - uses: actions/checkout@master
@@ -19,9 +19,13 @@ jobs:
         with:
           dotnet-version: ${{ matrix.dotnet }}
       - name: Build project
-        run: dotnet build lotto/04_lotto.sln
+        run: |
+          dotnet build lotto/04_lotto.sln
+          dotnet build kegeln/kegeln.sln
       - name: Test project
-        run: dotnet run --project lotto/04_lotto/04_lotto.csproj
+        run: |
+          dotnet run --project lotto/04_lotto/04_lotto.csproj
+          dotnet run --project kegeln/kegeln/kegeln.csproj
 
   # build-osx:
   #   runs-on: macOS-10.14
@@ -40,7 +44,7 @@ jobs:
     runs-on: windows-2019
     strategy:
       matrix:
-        dotnet: [  '3.0.100' ]
+        dotnet: [  '2.2.103', '3.0.100', '3.1.100-preview1-014459' ]
     name: Dotnet ${{ matrix.dotnet }} build-windows
     steps:
       - uses: actions/checkout@master
@@ -50,6 +54,10 @@ jobs:
         with:
           dotnet-version: ${{ matrix.dotnet }}
       - name: Build project
-        run: dotnet build lotto/04_lotto.sln
+        run: |
+          dotnet build lotto/04_lotto.sln
+          dotnet build kegeln/kegeln.sln
       - name: Test project
-        run: dotnet run --project lotto/04_lotto/04_lotto.csproj
+        run: |
+          dotnet run --project lotto/04_lotto/04_lotto.csproj
+          dotnet run --project kegeln/kegeln/kegeln.csproj
