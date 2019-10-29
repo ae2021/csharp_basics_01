@@ -20,12 +20,12 @@ jobs:
           dotnet-version: ${{ matrix.dotnet }}
       - name: Build project
         run: |
-          dotnet build lotto/04_lotto.sln
-          dotnet build kegeln/kegeln.sln
+          dotnet build -f ${{ matrix.dotnet }} lotto/04_lotto.sln
+          dotnet build -f ${{ matrix.dotnet }} kegeln/kegeln.sln
       - name: Test project
         run: |
-          dotnet run --project lotto/04_lotto/04_lotto.csproj
-          dotnet run --project kegeln/kegeln/kegeln.csproj
+          dotnet run -f ${{ matrix.dotnet }} --project lotto/04_lotto/04_lotto.csproj
+          dotnet run -f ${{ matrix.dotnet }} --project kegeln/kegeln/kegeln.csproj
 
   # build-osx:
   #   runs-on: macOS-10.14
@@ -55,9 +55,9 @@ jobs:
           dotnet-version: ${{ matrix.dotnet }}
       - name: Build project
         run: |
-          dotnet build lotto/04_lotto.sln
-          dotnet build kegeln/kegeln.sln
+          dotnet build -f ${{ matrix.dotnet }} lotto/04_lotto.sln
+          dotnet build -f ${{ matrix.dotnet }} kegeln/kegeln.sln
       - name: Test project
         run: |
-          dotnet run --project lotto/04_lotto/04_lotto.csproj
-          dotnet run --project kegeln/kegeln/kegeln.csproj
+          dotnet run -f ${{ matrix.dotnet }} --project lotto/04_lotto/04_lotto.csproj
+          dotnet run -f ${{ matrix.dotnet }} --project kegeln/kegeln/kegeln.csproj
