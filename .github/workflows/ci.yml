@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-18.04
     strategy:
       matrix:
-        dotnet: [  '2.2.103', '3.0.100', '3.1.100-preview1-014459' ]
+        dotnet: [  '2.2.103', '3.0.100' ]
     name: Dotnet ${{ matrix.dotnet }} build-ubuntu
     steps:
       - uses: actions/checkout@master
@@ -44,12 +44,14 @@ jobs:
     runs-on: windows-2019
     strategy:
       matrix:
-        dotnet: [  '2.2.103', '3.0.100', '3.1.100-preview1-014459' ]
+        dotnet: [  '2.2.103', '3.0.100' ]
     name: Dotnet ${{ matrix.dotnet }} build-windows
     steps:
       - uses: actions/checkout@master
       - name: Setup dotnet
-        run: set DOTNET_CLI_TELEMETRY_OPTOUT=1
+        run: | 
+          set DOTNET_CLI_TELEMETRY_OPTOUT=1
+          $env:DOTNET_CLI_TELEMETRY_OPTOUT = 1
       - uses: actions/setup-dotnet@v1
         with:
           dotnet-version: ${{ matrix.dotnet }}
